@@ -1,45 +1,0 @@
-,0
-0,"In the first project, we will build an elastic application that can automatically scale out and in on-demand and cost-effectively by using the IaaS cloud"
-1,"Specifically, we will build this application using the IaaS resources from Amazon Web Services (AWS)"
-2,"AWS is the most widely used IaaS provider and offers a variety of compute, storage, and massage services"
-3,"Our application will offer a meaningful cloud service to users, and the technologies and techniques that we learn will be useful for us to build many others in the future.
-Description
-Our cloud app will provide an image recognition service to users, by using cloud resources to perform deep learning on images provided by the users"
-4,"The deep learning model will be provided to you, but you need to build the application that uses this model to provide the service and meet the following typical requirements for a cloud application:
-	1	The app should take images received from users as input and perform image recognition on these images using the provided deep learning model"
-5,It should also return the recognition result (the top 1 result from the provided model) as output to the users
-6,"The input is a .png file, and the output is the prediction result"
-7,"For example, the user uploads an image named “test_0.JPEG”"
-8,"For the above request, the output should be “bathtub” in plain text"
-9,   Use the provided workload generator to create concurrent requests to your app
-10,"
-	2	The deep learning model is provided to you in an AWS image (ID:ami-0c4f7023847b90238 (Links to an external site.)  ami-0c4f7023847b90238ami-0c4f7023847b90238ami-0c4f7023847b90238, Name: app-tier, Region: us-east-1)"
-11,"Use the following command to invoke the program in the home directory:   cd /home/ubuntu/classifier/   python3 image_classification.py path_to_the_image
-	3	Your app should be able to handle multiple requests concurrently"
-12,"It should automatically scale out when the request demand increases, and automatically scale in when the demand drops"
-13,"Because we have limited resources from the free tier, the app should use no more than 20 instances, and it should queue all the pending requests when it reaches this limit"
-14,"When there is no request, the app should use the minimum number of instances"
-15,"Give your instances meaningful names, for example, a web-tier instance should be named in the fashion of “web-instance1” and an app-tier instance should be named “app-instance1”.
-	4	All the inputs (images) and outputs (recognition results) should be stored in S3 for persistence"
-16,S3 stores all the objects in a form of key-value pair
-17,The inputs should be stored in one bucket
-18,"The key of each object in this bucket is in the form of .JPEG files, e.g., test_0.JPEG"
-19,and the value in this bucket is the image file
-20,The outputs should be stored in another bucket
-21,"The key is the image name (e.g., test_0), and the value is in the form of (image name, top-1 result) pairs, e.g., (test_0, bathtub)"
-22,"Specify your bucket names in your project README file.
-	5	The app should handle all the requests as fast as possible, and it should not miss any requests"
-23,"The recognition requests should all be correct.
-	6	For the sake of easy testing, use the resources from only the ap-northeast-2 region for all your app's needs.
-Follow the reference architecture below to implement your app.
- 
-Note: to avoid the web tier times out before the app tier finishes processing a request, you can remove the web tier timeout limit"
-24,"For PHP backends, you can set set_time_limit to 0 to remove the limit.
-Test your code thoroughly using the provided workload generator"
-25,"Check the following:
-	1	The output of the workload generator is correct;
-	2	The contents in the S3 buckets are correct;
-	3	While processing the workload, the number of EC2 instances is correct.
-	4	All the requests are processed within a reasonable amount of time"
-26,"As a reference point, for a workload of 100 concurrent requests, using the TAs’ implementation of the project, it completes within seven minutes.
-Your project will be graded according to the above criteria."

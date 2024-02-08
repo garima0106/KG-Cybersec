@@ -1,22 +1,0 @@
-,0
-0,"In the second project, we will build an elastic application that can automatically scale out and in on demand and cost-effectively by using the PaaS cloud"
-1,"Specifically, we will build this application using AWS Lambda and other supporting services from AWS"
-2,AWS Lambda is the first and currently the most widely used function-based serverless computing service
-3,"We will develop an application that is more sophisticated than Project 2, as we are now more experienced with cloud programming and PaaS also makes it easier for us to develop in the cloud"
-4,"Our application will still offer a meaningful cloud service to users, and the technologies and techniques that we learn will be useful for us to build many others in future.
-Our cloud app will implement a smart classroom assistant for educators"
-5,"This assistant takes videos from the user’s classroom, performs face recognition on the collected videos, looks up the recognized students in the database, and returns the relevant academic information of each student back to the user"
-6,"The following diagram shows the architecture of this app.
-	1	Users upload videos to your input bucket stored in S3.
-	2	When a new video becomes available in the input bucket, it triggers the Lambda function to process the video.
-The Lambda function uses a multimedia framework, ffmpeg, to extract frames from the video"
-7,"The sample command in Python is as below: path = ""/tmp/""
-os.system(""ffmpeg -i "" + str(video_file_path) + "" -r 1 "" + str(path) + ""image-%3d.jpeg"")  The Lambda function then uses the Python face_recognition library to recognize faces from the frames"
-8,"To simplify your program, you need to classify only the first detected face in the video and ignore the rest"
-9,"
-The Lambda function uses the name of the first recognized face to search in DynamoDB for this person’s academic information"
-10,"You need to preload the following student data into DynamoDB
-
-You will create your Lambda function using a customized container image which is preinstalled with ffmpeg and the face_recognition library"
-11,"
-Use this workload generator to create requests to your app"

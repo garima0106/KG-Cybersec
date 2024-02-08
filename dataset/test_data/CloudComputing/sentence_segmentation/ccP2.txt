@@ -1,10 +1,0 @@
-In the second project, we will build an elastic application that can automatically scale out and in on demand and cost-effectively by using the PaaS cloud. Specifically, we will build this application using AWS Lambda and other supporting services from AWS. AWS Lambda is the first and currently the most widely used function-based serverless computing service. We will develop an application that is more sophisticated than Project 2, as we are now more experienced with cloud programming and PaaS also makes it easier for us to develop in the cloud. Our application will still offer a meaningful cloud service to users, and the technologies and techniques that we learn will be useful for us to build many others in future.
-Our cloud app will implement a smart classroom assistant for educators. This assistant takes videos from the user’s classroom, performs face recognition on the collected videos, looks up the recognized students in the database, and returns the relevant academic information of each student back to the user. The following diagram shows the architecture of this app.
-	1	Users upload videos to your input bucket stored in S3.
-	2	When a new video becomes available in the input bucket, it triggers the Lambda function to process the video.
-The Lambda function uses a multimedia framework, ffmpeg, to extract frames from the video. The sample command in Python is as below: path = "/tmp/"
-os.system("ffmpeg -i " + str(video_file_path) + " -r 1 " + str(path) + "image-%3d.jpeg")  The Lambda function then uses the Python face_recognition library to recognize faces from the frames. To simplify your program, you need to classify only the first detected face in the video and ignore the rest. 
-The Lambda function uses the name of the first recognized face to search in DynamoDB for this person’s academic information. You need to preload the following student data into DynamoDB
-
-You will create your Lambda function using a customized container image which is preinstalled with ffmpeg and the face_recognition library. 
-Use this workload generator to create requests to your app
